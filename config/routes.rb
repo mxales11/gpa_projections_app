@@ -1,4 +1,14 @@
 GpaProjectionsApp::Application.routes.draw do
+
+  root to: 'projections#home'
+
+  match '/home', to: 'projections#home'
+  match '/about', to: 'projections#about'
+  post '/calculateGpaNeededForTargetCumulativeGpa' => 'projections#calculateGpaNeededForTargetCumulativeGpa'
+  post '/calculateGpaNeededForTargetMajorGpa' => 'projections#calculateGpaNeededForTargetMajorGpa'
+  post '/calculatePredictedGpas' => 'projections#calculatePredictedGpas'
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
