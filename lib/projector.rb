@@ -59,29 +59,28 @@ class Projector
 
 	end
 
-
 	def self.calculatePredictedMajorGpa(major_gpa, major_credits_earned, credits_array, predicted_grade_array, is_major_course_array, is_repeated_course_array, repeated_course_grade_array)
 
 		predicted_major_hpts_earned = 0
 		predicted_major_credits_earned = 0
 
-
 		[credits_array, predicted_grade_array, is_major_course_array, is_repeated_course_array, repeated_course_grade_array].transpose.each do |credits, predicted_grade, is_major_course, is_repeated_course, repeated_course_grade|
-	  	
-			if (predicted_grade.to_s != "-")
+			if (predicted_grade.to_s != "-" and credits.to_s != "-")
 				if (is_major_course.to_i == 1) 
-					if(is_repeated_course.to_i == 1)
-						predicted_major_hpts_earned = credits.to_i * Projector.gradingSchema()[predicted_grade.to_s] - (credits.to_i * Projector.gradingSchema()[predicted_grade.to_s]) + predicted_major_hpts_earned
+					predicted_major_hpts_earned_for_this_course =  credits.to_i * Projector.gradingSchema()[predicted_grade.to_s]
+					if(is_repeated_course.to_i == 1 and repeated_course_grade.to_s != "-")
+						predicted_major_hpts_earned_for_this_course_before = credits.to_i * Projector.gradingSchema()[repeated_course_grade.to_s]
+						predicted_major_hpts_earned =  predicted_major_hpts_earned_for_this_course - predicted_major_hpts_earned_for_this_course_before + predicted_major_hpts_earned
 					else	
-		  				predicted_major_hpts_earned = credits.to_i * Projector.gradingSchema()[predicted_grade.to_s] + predicted_major_hpts_earned
+		  				predicted_major_hpts_earned = predicted_major_hpts_earned_for_this_course + predicted_major_hpts_earned
 		  				predicted_major_credits_earned = credits.to_i + predicted_major_credits_earned
 	  				end
 	  			end
 	  		end
 	  	end
 
-		cumulative_major_hpts = predicted_major_hpts_earned + major_credits_earned.to_f * major_gpa.to_f
-		all_possible_major_hpts = (major_credits_earned.to_f + predicted_major_credits_earned) * Projector.gradingSchema()["A"]
+		cumulative_major_hpts = predicted_major_hpts_earned + major_credits_earned.to_i * major_gpa.to_f
+		all_possible_major_hpts = (major_credits_earned .to_i + predicted_major_credits_earned) * Projector.gradingSchema()["A"]
 
 		predicted_major_gpa =  Projector.gradingSchema()["A"] * (cumulative_major_hpts / all_possible_major_hpts)
 
