@@ -230,10 +230,7 @@ color: #f00;
     }
 }
 
-.field_with_errors {
-    @extend .control-group;
-    @extend .error;
-}
+//todo: add handling errors
 
 td
 {

@@ -2,8 +2,8 @@ GpaProjectionsApp::Application.routes.draw do
 
   root to: 'projections#home'
 
-  match '/home', to: 'projections#home'
-  match '/about', to: 'projections#about'
+  get '/home', to: 'projections#home'
+  get '/about', to: 'projections#about'
   post '/calculateGpaNeededForTargetCumulativeGpa' => 'projections#calculateGpaNeededForTargetCumulativeGpa'
   post '/calculateGpaNeededForTargetMajorGpa' => 'projections#calculateGpaNeededForTargetMajorGpa'
   post '/calculatePredictedGpas' => 'projections#calculatePredictedGpas'
