@@ -2,21 +2,21 @@
 <html>
 <head>
    <title> <%= full_title(yield(:title)) %></title>
- 
   <%= javascript_include_tag "application" %>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-
-
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
 </head>
 <body>
-	<div class="MainContainer">
-		<%= render 'layouts/logo_container' %>
-		<%= render 'layouts/app_name_container' %>
-		<div class="PageContent">
-			
-			<%= render 'layouts/nav_tab' %>
+	
+	
+		<div id="frameHeader" class="frame">
+			<div id="header">
+				<%= render 'layouts/logo_container' %>
+			</div>
+		</div>		
+	
+		<div id="frameMain" class="frame">
 			<% if flash[:error] %>
 				<div id="error_explanation">
 					  <p class='error'><%=h flash[:error] %></p>
@@ -36,6 +36,13 @@
 			<%= yield %>
 		 	
 		</div>
-	</div>
+		<div id="frameBottom" class="frame">
+		<div id="navBottom"><div id="navBottom1">
+			<div id="buttonBottom">
+			<a href="#" class="buttonBottom">about SMU</a>
+			<a href="#" class="buttonBottom">contact us</a>
+			</div>
+		</div></div>
+</div>
 </body>
 </hmtl>

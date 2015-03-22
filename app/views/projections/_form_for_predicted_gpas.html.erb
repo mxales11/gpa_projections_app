@@ -1,12 +1,12 @@
 <%= form_tag(calculatePredictedGpas_path, :remote => true) do %>
 
-	<%= text_field_tag :cumulative_gpa, nil, :placeholder => "Cumulative GPA" %>
+	<%= text_field_tag :cumulative_gpa, nil, :placeholder => "Cumulative GPA", class: 'form-control' %>
 	<br></br>
-	<%= text_field_tag :credits_earned, nil, :placeholder => "Credits earned" %>
+	<%= text_field_tag :credits_earned, nil, :placeholder => "Credits earned", class: 'form-control' %>
 	<br></br>
-	<%= text_field_tag :major_gpa, nil, :placeholder => "Major GPA" %>
+	<%= text_field_tag :major_gpa, nil, :placeholder => "Major GPA", class: 'form-control' %>
 	<br></br>
-	<%= text_field_tag :major_credits_earned, nil, :placeholder => "Major credits earned" %>
+	<%= text_field_tag :major_credits_earned, nil, :placeholder => "Major credits earned", class: 'form-control' %>
 	<br></br>
 	<table>
 		<tr>
