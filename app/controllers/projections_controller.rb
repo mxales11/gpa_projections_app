@@ -38,13 +38,12 @@ class ProjectionsController < ApplicationController
     @repeated_grade_array = params[:grade_from_repeated_course]
     @cumulative_gpa = params[:cumulative_gpa]
     @credits_earned = params[:credits_earned]
-    @is_repeated_course_array = getArrayOfParams("is_repeated_course", @predicted_grade_array.length);
     @is_major_course_array =  getArrayOfParams("is_major_course",  @predicted_grade_array.length);
     @major_gpa = params[:major_gpa]
     @major_credits_earned = params[:major_credits_earned]
 
-    @predicted_cumulative_gpa = Projector.calculatePredictedCumulativeGpa(@cumulative_gpa, @credits_earned, @credits_array, @predicted_grade_array, @is_repeated_course_array, @repeated_grade_array)
-    @predicted_major_gpa = Projector.calculatePredictedMajorGpa(@major_gpa, @major_credits_earned, @credits_array, @predicted_grade_array, @is_major_course_array, @is_repeated_course_array,  @repeated_grade_array)
+    @predicted_cumulative_gpa = Projector.calculatePredictedCumulativeGpa(@cumulative_gpa, @credits_earned, @credits_array, @predicted_grade_array, @repeated_grade_array)
+    @predicted_major_gpa = Projector.calculatePredictedMajorGpa(@major_gpa, @major_credits_earned, @credits_array, @predicted_grade_array, @is_major_course_array, @repeated_grade_array)
 
     @predicted_gpas = Array.new
     @predicted_gpas.push(@predicted_cumulative_gpa)
