@@ -38,7 +38,7 @@ class Projector
 
 		[predicted_grade_array, credits_array, repeated_course_grade_array].transpose.each do |predicted_grade, credits, repeated_course_grade|
 
-			echo("INVOKED");
+			logger.debug(INVOKED);
 	  		if (predicted_grade.to_s != "" and credits != "")
 	  			grade = Projector.gradingSchema()[predicted_grade.to_s];
 	  			credit_score = credits.to_i;
