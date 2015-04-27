@@ -3,12 +3,12 @@
   <div class="row">
 		<div class="col-lg-3">
 			<div class="form-group">
-				<%= text_field_tag :cumulative_gpa, nil, :placeholder => "Cumulative GPA", class: 'form-control'%>
+				<%= text_field_tag :cumulative_gpa, nil, :required => true, :placeholder => "Cumulative GPA", class: 'form-control'%>
 			</div>
 		</div>
 		<div class="col-lg-3">
 			<div class="form-group">
-				<%= text_field_tag :credits_earned, nil, :required => true, :placeholder => "Credits earned", class: 'form-control' %>
+				<%= text_field_tag :credits_earned, nil, :required => true, :type => "number", :placeholder => "Credits earned", class: 'form-control' %>
 			</div>
 		</div>
 		<div class="col-lg-3">
@@ -18,7 +18,7 @@
 		</div>
 		<div class="col-lg-3">
 			<div class="form-group">
-				<%= text_field_tag :major_credits_earned, nil, :required => true, :placeholder => "Major credits earned", class: 'form-control' %>
+				<%= text_field_tag :major_credits_earned, nil, :required => true, :type => "number", :placeholder => "Major credits earned", class: 'form-control' %>
 			</div>
 		</div>
 	</div>
@@ -69,11 +69,6 @@
 	</br>
 
 <% end %>
-
-
-
-
-
 
 
 
