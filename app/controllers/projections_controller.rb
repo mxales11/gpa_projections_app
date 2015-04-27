@@ -31,19 +31,27 @@ class ProjectionsController < ApplicationController
   end
 
 
-   def calculatePredictedGpas
+  def calculatePredictedGpas
 
+    @number_of_courses = 7;
     @credits_array = params[:credits]
     @predicted_grade_array = params[:predicted_grade]
     @repeated_grade_array = params[:grade_from_repeated_course]
     @cumulative_gpa = params[:cumulative_gpa]
     @credits_earned = params[:credits_earned]
-    @is_major_course_array =  getArrayOfParams("is_major_course",  @predicted_grade_array.length);
+    @is_major_course_array =  getArrayOfParams("is_major_course",  @number_of_courses);
     @major_gpa = params[:major_gpa]
     @major_credits_earned = params[:major_credits_earned]
+    
+    logger.debug(@credits_array);
+    logger.debug(@predicted_grade_array);
+    logger.debug(@repeated_grade_array);
+    logger.debug(@is_major_course_array);
+    
+    
 
     @predicted_cumulative_gpa = Projector.calculatePredictedCumulativeGpa(@cumulative_gpa, @credits_earned, @credits_array, @predicted_grade_array, @repeated_grade_array)
-    @predicted_major_gpa = Projector.calculatePredictedMajorGpa(@major_gpa, @major_credits_earned, @credits_array, @predicted_grade_array, @is_major_course_array, @repeated_grade_array)
+    @predicted_major_gpa = Projector.calculatePredictedMajorGpa(@major_gpa, @major_credits_earned, @credits_array, @predicted_grade_array, @is_major_course_array,  @repeated_grade_array)
 
     @predicted_gpas = Array.new
     @predicted_gpas.push(@predicted_cumulative_gpa)
@@ -55,14 +63,21 @@ class ProjectionsController < ApplicationController
     
   end
 
-
+  
+  
   def getArrayOfParams(parameter, arrayLength)
-
-    arrayOfParams = Array.new
-    length = arrayLength.to_i
-    
-    length.to_i.times do |i|
-        arrayOfParams.push(params[:"#{parameter}#{i.to_s}"])
+  
+      arrayOfParams = Array.new
+      length = arrayLength.to_i
+      
+      length.to_i.times do |i|
+        is_checked = params[:"#{parameter}#{i.to_s}"]
+        
+        if(!is_checked.nil?)
+          arrayOfParams.push(1)
+        else
+          arrayOfParams.push(0);
+        end
       end
 
     return arrayOfParams

@@ -38,13 +38,15 @@ class Projector
 
 		[predicted_grade_array, credits_array, repeated_course_grade_array].transpose.each do |predicted_grade, credits, repeated_course_grade|
 
-	  		if (predicted_grade.to_s != "")
-	  			if(predicted_grade.to_s != 	"")
-
-	  				predicted_cumulative_hpts_earned = credits.to_i * Projector.gradingSchema()[predicted_grade.to_s] - (credits.to_i * Projector.gradingSchema()[repeated_course_grade.to_s])+ predicted_cumulative_hpts_earned
+			echo("INVOKED");
+	  		if (predicted_grade.to_s != "" and credits != "")
+	  			grade = Projector.gradingSchema()[predicted_grade.to_s];
+	  			credit_score = credits.to_i;
+	  			if(repeated_course_grade.to_s != "")
+	  				predicted_cumulative_hpts_earned = credit_score * grade - (credit_score * Projector.gradingSchema()[repeated_course_grade.to_s])+ predicted_cumulative_hpts_earned
 	  			else
-	  				predicted_cumulative_hpts_earned = credits.to_i * Projector.gradingSchema()[predicted_grade.to_s] + predicted_cumulative_hpts_earned
-	  				predicted_cumulative_credits_earned = credits.to_i + predicted_cumulative_credits_earned
+	  				predicted_cumulative_hpts_earned = credit_score * grade + predicted_cumulative_hpts_earned
+	  				predicted_cumulative_credits_earned = credit_score + predicted_cumulative_credits_earned
 	  			end
 	  			
 	  		end	
