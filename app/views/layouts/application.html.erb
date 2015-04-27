@@ -1,63 +1,106 @@
-		<!DOCTYPE html>
-		<html>
-		<head>
-		   <title> <%= full_title(yield(:title)) %></title>
-		  <%= javascript_include_tag "application" %>
-		  <%= stylesheet_link_tag    "application", :media => "all" %>
-		  <%= csrf_meta_tags %>
-		  <%= render 'layouts/shim' %>
-		</head>
-
-			<body>
-		
-				<div id="frameHeader" class="frame">
-					<div id="header">
-						<div id=row>
-							 <div class="col-lg-3">
-								<%= render 'layouts/logo_container' %>
-							</div>
-							 <div class="col-lg-4">
-							 	</br>
-								<h3 id="app-title">GPA Projections App</h3>
-							</div>
-						</div>
-					
-					</div>
-				</div>		
+			<!DOCTYPE html>
+			<html>
+			<head>
+			   <title> <%= full_title(yield(:title)) %></title>
+			  <%= javascript_include_tag "application" %>
+			  <%= stylesheet_link_tag    "application", :media => "all" %>
+			  <%= javascript_include_tag "jquery.validate.min" %>
+			  <%= javascript_include_tag "additional-methods.min" %>
+			  <%= stylesheet_link_tag    "application", :media => "all" %>
+			  <%= stylesheet_link_tag    "site-demos", :media => "all" %>
+			  <%= csrf_meta_tags %>
+			  <%= render 'layouts/shim' %>
+			  
+			  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	
+			<!-- Latest compiled and minified CSS -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	
+			<!-- Optional theme -->
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+	
+			<!-- Latest compiled and minified JavaScript -->
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	
+			</head>
+	
+				<body>
 			
-				<div id="frameMain" class="frame">
-					<% if flash[:error] %>
-						<div id="error_explanation">
-							  <p class='error'><%=h flash[:error] %></p>
+					<div id="frameHeader" class="frame">
+						<div id="header">
+							<div id=row>
+								 <div class="col-lg-3">
+									<%= render 'layouts/logo_container' %>
+								</div>
+								 <div class="col-lg-4">
+								 	</br>
+									<h3 id="app-title">GPA Projections App</h3>
+								</div>
+							</div>
+						
 						</div>
-					<% end %>
-					<% if flash[:alert] %>
-						<div id="error_explanation">
-							  <p class='error'><%=h flash[:alert] %></p>
-						</div>
-					<% end %>
-					<% if flash[:notice] %>
-						<div id="error_explanation">
-							  <p class='error'><%=h flash[:notice] %></p>
-						</div>
-					<% end %>
-		
-					<%= yield %>
-				 	
-				</div>
-		
-				<div id="frameBottom" class="frame">
-					<div class="row">
-						<div class="col-lg-5" >
-							<p id=about>
-								Calculate GPA you need this semester to hit your target cumulative or major GPA.
-								Estimate cumulative or major GPA based on grades you expect to have this semester.
-							</p>
-							
+					</div>		
+				
+					<div id="frameMain" class="frame">
+						<% if flash[:error] %>
+							<div id="error_explanation">
+								  <p class='error'><%=h flash[:error] %></p>
+							</div>
+						<% end %>
+						<% if flash[:alert] %>
+							<div id="error_explanation">
+								  <p class='error'><%=h flash[:alert] %></p>
+							</div>
+						<% end %>
+						<% if flash[:notice] %>
+							<div id="error_explanation">
+								  <p class='error'><%=h flash[:notice] %></p>
+							</div>
+						<% end %>
+			
+						<%= yield %>
+					 	
+					</div>
+			
+					<div id="frameBottom" class="frame">
+						<div class="row">
+							<div class="col-lg-5" >
+								<p id=about>
+									Calculate GPA you need this semester to hit your target cumulative or major GPA.
+									Estimate cumulative or major GPA based on grades you expect to have this semester.
+								</p>
+								
+							</div>
 						</div>
 					</div>
-				</div>
-				
-		
-		</body>
-		</hmtl>
+					
+			
+			</body>
+			</hmtl>
+	
+	
+	<script type="text/javascript">
+	
+	$(document).ready(function(){
+		   	$("form").validate({  
+	    			rules: {
+	    				cumulative_gpa: {
+	    					digits: true,
+	    					required: true
+	    				},
+	    				max_price: {
+	    					digits: true
+	    				}
+	    			}
+	    		}); 
+	   
+	  
+	});
+	
+	
+	
+	 
+	
+	
+	</script>
+	
