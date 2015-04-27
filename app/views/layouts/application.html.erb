@@ -4,10 +4,6 @@
 			   <title> <%= full_title(yield(:title)) %></title>
 			  <%= javascript_include_tag "application" %>
 			  <%= stylesheet_link_tag    "application", :media => "all" %>
-			  <%= javascript_include_tag "jquery.validate.min" %>
-			  <%= javascript_include_tag "additional-methods.min" %>
-			  <%= stylesheet_link_tag    "application", :media => "all" %>
-			  <%= stylesheet_link_tag    "site-demos", :media => "all" %>
 			  <%= csrf_meta_tags %>
 			  <%= render 'layouts/shim' %>
 			  
