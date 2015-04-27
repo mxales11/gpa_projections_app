@@ -1,13 +1,13 @@
 <%= form_tag(calculateGpaNeededForTargetCumulativeGpa_path, :remote => true) do %>
 
 
-	<%= text_field_tag :cumulative_gpa, nil, :required => true, :placeholder => "Cumulative GPA", class: 'form-control', :style => "width:197px" %>
+	<%= text_field_tag :cumulative_gpa, nil, :required => true, :placeholder => "Cumulative GPA", class: 'form-control', :style => "width:230px" %>
 	<br></br>
-	<%= text_field_tag :credits_earned, nil, :required => true, :type => "number", :placeholder => "Credits earned", class: 'form-control', :style => "width:197px" %>
+	<%= text_field_tag :credits_earned, nil, :required => true, :type => "number", :placeholder => "Credits earned", class: 'form-control', :style => "width:230px" %>
 	<br></br>
-	<%= text_field_tag :desired_cumulative_gpa, nil, :placeholder => "Target cumulative GPA", class: 'form-control', :style => "width:197px" %>
+	<%= text_field_tag :desired_cumulative_gpa, nil, :placeholder => "Target cumulative GPA", class: 'form-control', :style => "width:230px" %>
 	<br></br>
-	<%= text_field_tag :credits_taken_this_semester, nil, :required => true, :type => "number", :placeholder => "Credits earned this term", class: 'form-control', :style => "width:197px" %>
+	<%= text_field_tag :credits_taken_this_semester, nil, :required => true, :type => "number", :placeholder => "Credits earned this term", class: 'form-control', :style => "width:230px" %>
 
 	<div id= "gpa_for_target_cumulative_gpa"></div>
 	</br>
